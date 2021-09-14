@@ -1,0 +1,92 @@
+* {
+	padding: 0;
+	margin: 0;
+	border: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Roboto", sans-serif;
+}
+
+.comment {
+    display: flex;
+}
+
+.comment__user-pic, .reply__user-pic {
+    border-radius: 100%;
+}
+
+.comment__block {
+    background-color: #f0f2f5;
+    border-radius: 20px;
+    padding: 7px 20px 10px;
+    margin-left: 10px;
+}
+
+.user-name {
+    text-decoration: none;
+    color: #000;
+    font-weight: bold
+
+}
+
+.user-name:hover {
+    text-decoration: underline;
+}
+
+.comment__reaction {
+    margin-left: 20px;
+}
+
+.reaction__list {
+    position: relative;
+    list-style: none;
+}
+
+.reaction__item{
+    display: inline;
+}
+
+.reaction__item + .reaction__item::before {
+    content: ' . ';
+    user-select: none;
+}
+
+.reply {
+    margin-top: 20px;
+    display: flex;
+    width: 100%;
+}
+
+.reply__image {
+    padding-right: 10px;
+}
+
+.reply__answer {
+    flex-grow: 1;
+}
+
+.reply__form {
+    display: flex;
+}
+
+.reply__input {
+    resize: none;
+    border: none;
+    background-color: #f0f2f5;
+    border-radius: 20px;
+    outline: none;
+    height: 70px;
+    padding: 12px 10px 10px 10px;
+    display: block;
+    width: 80%;
+}
+
+.reply__send {
+    width: 15%;
+    border-radius: 20px;
+    margin-left: 2%;
+    font-size: 32px;
+    cursor: pointer;
+}

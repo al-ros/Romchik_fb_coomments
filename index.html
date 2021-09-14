@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,100italic,300,300italic,regular,italic,500,500italic,700,700italic,900,900italic" rel="stylesheet" />
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="container">
+
+        <div class="comment">
+            <div class="comment__image">
+                <a href="" class="comment__user-profile"><img src="https://via.placeholder.com/32" alt="" class="comment__user-pic"></a>
+            </div>
+            <div class="comment__inner">
+                <div class="comment__block">
+                    <a href="" class="user-name">John Doe</a> <br>
+                    <span class="user-comment">Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat ajgjkhkjhhjkssumenda mollitikhlha saepe delectus magni. Ducimus, labore.</span>
+                </div>
+
+                <div class="comment__children">
+                    <div class="comment__reaction reaction">
+                        <ul class="reaction__list">
+                            <li class="reaction__item">Like</li>
+                            <li class="reaction__item">Reply</li>
+                            <li class="reaction__item">42m</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="reply">
+            <div class="reply__image">
+                <img src="https://via.placeholder.com/24" alt="" class="reply__user-pic">
+            </div>
+            <div class="reply__answer">
+                <form action="" class="reply__form" name="formName">
+                    <textarea class="reply__input" name="answer" id="answer" cols="30" rows="1" placeholder="Write a reply..."></textarea>
+                    <button class="reply__send" type="submit">Send</button>
+                </form>
+            </div>
+        </div>
+
+    </div>
+    <script src="script.js"></script>
+
+
+    <template id="comment-item">
+        <div class="comment">
+            <div class="comment__image">
+                <a href="" class="comment__user-profile"><img src="https://via.placeholder.com/32" alt="" class="comment__user-pic"></a>
+            </div>
+            <div class="comment__inner">
+                <div class="comment__block">
+                    <a href="" class="user-name">Anonimus</a> <br>
+                    <span class="user-comment"></span>
+                </div>
+
+                <div class="comment__children">
+                    <div class="comment__reaction reaction">
+                        <ul class="reaction__list">
+                            <li class="reaction__item">Like</li>
+                            <li class="reaction__item">Reply</li>
+                            <li class="reaction__item">42m</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </template>
+
+    <template id="reply-item">
+        <div class="reply">
+            <div class="reply__image">
+                <img src="https://via.placeholder.com/24" alt="" class="reply__user-pic">
+            </div>
+            <div class="reply__answer">
+                <form action="" class="reply__form" name="formName">
+                    <textarea class="reply__input" name="answer" id="answer" cols="30" rows="1" placeholder="Write a reply..." value=""></textarea>
+                    <button class="reply__send" type="submit">Send</button>
+                </form>
+            </div>
+        </div>
+    </template>
+
+</body>
+</html>
