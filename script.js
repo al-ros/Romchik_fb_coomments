@@ -1,48 +1,63 @@
-document.querySelector('form').addEventListener('submit', (e) => {
-    e.preventDefault();
-    const formData = new FormData(e.target);
-    if (formData.get('answer').trim()) {
-        const object = {};
-      formData.forEach((value, key) => object[key] = value);
-    // formData.append('answer', value);
-      console.log('form', object);
-        document.formName.reset();   // Mozhno li ydalit' cherez formData.delete()
-        
-        const commentTemplate = document.getElementById('comment-item');
-        const replyTemplate = document.getElementById('reply-item');
-        if (commentTemplate && replyTemplate) {
-          const commentClone = commentTemplate.content.cloneNode(true);
-          const replyClone = replyTemplate.content.cloneNode(true);
-          const commentChild = commentClone.firstElementChild;
-          const replyChild = replyClone.firstElementChild;
-          // console.log(commentChild);
-          // console.log(replyChild);
+const handleFormSubmit = (e) => {
+  e.preventDefault();
+  const formEl = e.target;
+  const formData = new FormData(formEl);
+  const commentTemplate = document.getElementById('comment-item');
+  const value = formData.get('answer').trim();
 
-          const commentContainer = document.querySelector('.reaction');
-          commentContainer.appendChild(commentChild);
-          const a = commentChild.querySelector('.user-comment');
-          a.innerHTML = object.answer;
-    }
+  if (!(value && commentTemplate)) {
+    return null;
+  }
 
-    }
-  });
+  const commentChildrenEl = formEl.closest('.comment__children');
+  const commentContainer = commentChildrenEl || formEl.closest('.comments').querySelector('.comments__list');
+  const replyElement = commentContainer.querySelector('.reply');
+  const commentClone = commentTemplate.content.cloneNode(true);
+  const commentChild = commentClone.firstElementChild;
+  const userComment = commentChild.querySelector('.user-comment');
+
+  if (commentChildrenEl) {
+    replyElement.remove();
+  } else {
+    formEl.reset()
+  }
+
+  userComment.innerHTML = value;
+  commentContainer.appendChild(commentChild);
+  bindReplyClick(commentChild);
+}
+
+const mountReplyForm = (commentElement) => {
+  const commentChildrenEl = commentElement.querySelector('.comment__children');
+  if (commentChildrenEl.querySelector('.reply')) {
+    return null;
+  }
+
+  const replyTemplate = document.getElementById('reply-item');
+  if (replyTemplate) {
+    const replyClone = replyTemplate.content.cloneNode(true);
+    const replyChild = replyClone.firstElementChild;
+    commentChildrenEl.appendChild(replyChild);
+    replyChild.querySelector('.reply__input').focus();
+    replyChild.querySelector('form.reply__form').addEventListener('submit', handleFormSubmit);
+  }
+}
+
+const bindReplyClick = (commentElement) => {
+  commentElement
+    .querySelector('.reaction__item[data-action="reply"]')
+    .addEventListener('click', () => mountReplyForm(commentElement));
+}
+
+// document.querySelectorAll('.comment').forEach((item) => bindReplyClick(item));
+document.querySelectorAll('.comment').forEach(bindReplyClick);
+document.querySelector('form.reply__form').addEventListener('submit', handleFormSubmit);
 
 
-  
+// document.querySelectorAll('.reaction__item').forEach(
+//   (item) => item.addEventListener('click', () => console.log('clicked'))
+// )
 
-
-  
-
-
-
-
-    // document.querySelector('form').addEventListener('submit', (e) => {
-    //     e.preventDefault();
-    //     const formData = new FormData(e.target);
-    //     if (formData.get('answer').trim()) {
-    //       const object = {};
-    //       formData.forEach((value, key) => object[key] = value);
-    //       console.log('form', object);
-    //       document.formName.reset();   // Mozhno li ydalit' cherez formData.delete()
-    //     }
-    //   });
+// document.addEventListener('click', (e) => {
+//   console.log(e.target.closest('.reaction__item'))
+// })

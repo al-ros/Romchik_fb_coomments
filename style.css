@@ -11,6 +11,8 @@ body {
 
 .comment {
     display: flex;
+    margin-bottom: 20px;
+    margin-top: 20px;
 }
 
 .comment__user-pic, .reply__user-pic {
@@ -46,6 +48,7 @@ body {
 
 .reaction__item{
     display: inline;
+    cursor: pointer;
 }
 
 .reaction__item + .reaction__item::before {
